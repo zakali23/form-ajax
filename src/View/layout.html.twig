@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    {% block stylesheet %}{% endblock %}
+    <link rel="icon" href="/assets/images/favicon.png">
+</head>
+
+<body>
+    {% block content %}{% endblock %}
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/js/mdb.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+
+
+// envoi mail avec js+ajax
+
+            $(function () {
+                $('#envoyer').click(function () {
+
+
+                    var data = {
+                        nom: $("#nom").val(),
+                        prenom: $("#prenom").val(),
+                        mail: $("#email").val(),
+                        message: $("#message").val()
+                    };
+
+
+                    if (!($("#nom").val() === "") && !($("#prenom").val() === "") && !($("#email").val() === "") && !($("#message").val() === "")) {
+                        $.ajax({
+                            type: "POST",
+                            url: "http://localhost:8000/",
+                            data: data,
+                            success: function () {
+
+                                $('input').css('border-color', '#999');
+                                $('textarea').css('border-color', '#999');
+                                $('#messageSend').replaceWith('<div class="alert alert-success" role="alert">' + 'Message envoyé' + '</div>');
+
+                            }
+
+                        });
+                    } else {
+                        $('input').css('border-color', 'red');
+                        $('textarea').css('border-color', 'red');
+                        $('#messageSend').append('<div class="alert alert-warning" role="alert">' + 'veuillez remplir tous les champs' + '</div>');
+                    }
+
+
+
+                });
+
+
+            });
+
+            // Wait for the DOM to be ready
+
+
+        });
+    </script>
+   
+</body>
+{% block javascript %}{% endblock %}
+
+</html>

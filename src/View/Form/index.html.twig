@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!-- Material form register -->
+    <div id="messageSend"></div>
+    <form method="post" action="">
+        <p class="h4 text-center mb-4">Sign up</p>
+
+        <!-- Material input text -->
+        <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="nom" name="nom" class="form-control">
+            <label for="materialFormRegisterNameEx">nom</label>
+        </div>
+
+        <div class="md-form">
+            <i class="fa fa-user prefix grey-text"></i>
+            <input type="text" id="prenom" name="prenom" class="form-control">
+            <label for="materialFormRegisterNameEx">prenom</label>
+        </div>
+        <!-- Material input email -->
+        <div class="md-form">
+            <i class="fa fa-envelope prefix grey-text"></i>
+            <input type="email" id="email" name="email"  class="form-control">
+            <label for="materialFormRegisterEmailEx">Your email</label>
+        </div>
+
+        <div class="md-form">
+            <i class="fa fa-pencil prefix grey-text"></i>
+            <textarea type="text" id="message" class="form-control md-textarea" rows="3" name="message"></textarea>
+            <label for="materialFormContactMessageEx">Your message</label>
+        </div>
+
+        <div class="text-center mt-4">
+            <button class="btn btn-primary" type="submit" id="envoyer" name="envoyer">envoyer</button>
+        </div>
+    </form>
+    <!-- Material form register -->
+{% endblock %}
